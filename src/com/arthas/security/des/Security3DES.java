@@ -9,21 +9,23 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
+import javax.crypto.spec.DESedeKeySpec;
 import java.security.Key;
+import java.security.SecureRandom;
 import java.security.Security;
 
 /**
  * Created by Arthas on 16/5/30.
  * <p>
- * DES（Data Encryption Standard）:数据加密标准。
- * 1998年后，该加密方式不断被破解，不再具有安全性，基本上已不再使用在实际项目中。
- * 目前只会在以前的老项目或一些案例介绍上可以见到。
- * DES主要有两种实现方式：jdkDES,bcDES
+ * 三重DES
+ * 3DES相比DES，密钥长度增长112，168
+ * 迭代次数增加
+ * 应用广泛
  */
-public class SecurityDES {
+public class Security3DES {
     private boolean isJdkDES;//是使用jdkDES还是BCDES
 
-    public SecurityDES(boolean isJdkDES) {
+    public Security3DES(boolean isJdkDES) {
         this.isJdkDES = isJdkDES;
     }
 
@@ -36,19 +38,20 @@ public class SecurityDES {
         Key convertSecretKey = null;
         try {
             //生成Key
-            KeyGenerator keyGenerator = KeyGenerator.getInstance(Constant.DES_TYPE);
+            KeyGenerator keyGenerator = KeyGenerator.getInstance(Constant.DESEDE_TYPE);
             if (!isJdkDES) {
                 Security.addProvider(new BouncyCastleProvider());
-                keyGenerator = KeyGenerator.getInstance(Constant.DES_TYPE, Constant.BC_TYPE);
+                keyGenerator = KeyGenerator.getInstance(Constant.DESEDE_TYPE, Constant.BC_TYPE);
             }
 
-            keyGenerator.init(56);//密钥长度
+            //keyGenerator.init(168);//密钥长度
+            keyGenerator.init(new SecureRandom());
             SecretKey secretKey = keyGenerator.generateKey();
             byte[] bytesKey = secretKey.getEncoded();
 
             //转换Key
-            DESKeySpec desKeySpec = new DESKeySpec(bytesKey);
-            SecretKeyFactory factory = SecretKeyFactory.getInstance(Constant.DES_TYPE);
+            DESedeKeySpec desKeySpec = new DESedeKeySpec(bytesKey);
+            SecretKeyFactory factory = SecretKeyFactory.getInstance(Constant.DESEDE_TYPE);
             convertSecretKey = factory.generateSecret(desKeySpec);
 
         } catch (Exception e) {
@@ -67,7 +70,7 @@ public class SecurityDES {
     public String desOpt(String text, boolean isEncode, Key convertSecretKey) {
         try {
             //加密或解密
-            Cipher cipher = Cipher.getInstance(Constant.DES_MODE);//填充方式
+            Cipher cipher = Cipher.getInstance(Constant.DESEDE_MODE);//填充方式
             if (isEncode) {
                 cipher.init(Cipher.ENCRYPT_MODE, convertSecretKey);
                 byte[] result = cipher.doFinal(text.getBytes());

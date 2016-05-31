@@ -1,19 +1,21 @@
-package com.arthas.security.des;
+package com.arthas.security.aes;
+
+import com.arthas.security.des.SecurityDES;
 
 import java.security.Key;
 
 /**
  * Created by Arthas on 16/5/30.
  */
-public class DESTest {
+public class TestAES {
     public static void main(String[] args) {
-        SecurityDES jdkDES = new SecurityDES(true);
+        SecurityAES jdkDES = new SecurityAES(true);
         Key jdkKey = jdkDES.generateKey();
         String text = jdkDES.desOpt("123456", true, jdkKey);
         System.out.println("jdk encode : " + text);
         System.out.println("jdk decode : " + jdkDES.desOpt(text, false, jdkKey));
 
-        SecurityDES bcDES = new SecurityDES(false);
+        SecurityAES bcDES = new SecurityAES(false);
         Key bcKey = bcDES.generateKey();
         String bcText = bcDES.desOpt("123456", true, bcKey);
         System.out.println("bc encode : " + bcText);
