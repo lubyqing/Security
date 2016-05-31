@@ -1,17 +1,14 @@
 package com.arthas.security.aes;
 
 import com.arthas.security.common.Constant;
-import com.sun.org.apache.xerces.internal.impl.dv.util.HexBin;
+import org.apache.commons.codec.binary.Hex;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
-import java.security.SecureRandom;
 import java.security.Security;
 
 /**
@@ -74,11 +71,11 @@ public class SecurityAES {
                 cipher.init(Cipher.ENCRYPT_MODE, convertSecretKey);
                 byte[] result = cipher.doFinal(text.getBytes());
 
-                return HexBin.encode(result);
+                return Hex.encodeHexString(result);
             } else {
                 cipher.init(Cipher.DECRYPT_MODE, convertSecretKey);
 
-                return new String(cipher.doFinal(HexBin.decode(text)));
+                return new String(cipher.doFinal(Hex.decodeHex(text.toCharArray())));
             }
         } catch (Exception e) {
             e.printStackTrace();

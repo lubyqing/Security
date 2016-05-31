@@ -1,7 +1,7 @@
 package com.arthas.security.des;
 
 import com.arthas.security.common.Constant;
-import com.sun.org.apache.xerces.internal.impl.dv.util.HexBin;
+import org.apache.commons.codec.binary.Hex;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import javax.crypto.Cipher;
@@ -72,11 +72,11 @@ public class SecurityDES {
                 cipher.init(Cipher.ENCRYPT_MODE, convertSecretKey);
                 byte[] result = cipher.doFinal(text.getBytes());
 
-                return HexBin.encode(result);
+                return Hex.encodeHexString(result);
             } else {
                 cipher.init(Cipher.DECRYPT_MODE, convertSecretKey);
 
-                return new String(cipher.doFinal(HexBin.decode(text)));
+                return new String(cipher.doFinal(Hex.decodeHex(text.toCharArray())));
             }
         } catch (Exception e) {
             e.printStackTrace();

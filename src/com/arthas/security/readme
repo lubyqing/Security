@@ -1,0 +1,4 @@
+算法实现：
+1、Jdk：自带的实现方式；
+2、Commons Codec(CC):apache提供的第三方包实现；基于JDK封装的简化操作；
+3、Bouncy Castle(BC):第三方提供实现；
