@@ -1,4 +1,4 @@
-package com.arthas.security.md;
+package com.arthas.security.messagedigest.md;
 
 import com.arthas.security.common.Constant;
 import org.apache.commons.codec.binary.Hex;

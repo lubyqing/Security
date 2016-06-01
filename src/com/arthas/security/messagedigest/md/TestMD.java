@@ -1,4 +1,4 @@
-package com.arthas.security.md;
+package com.arthas.security.messagedigest.md;
 
 /**
  * Created by tanchuanzhi on 2016/5/31.

@@ -1,4 +1,4 @@
-package com.arthas.security.sha;
+package com.arthas.security.messagedigest.sha;
 
 /**
  * Created by tanchuanzhi on 2016/5/31.

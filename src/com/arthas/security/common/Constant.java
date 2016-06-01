@@ -77,4 +77,6 @@ public interface Constant {
      */
     String SHA512_TYPE = "SHA-512";
 
+    String HMAC_MD5_TYPE = "HmacMD5";
+
 }

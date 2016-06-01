@@ -1,0 +1,7 @@
+消息摘要算法--MAC
+MAC（Message Authentication Code)，又称HMAC
+HMAC(keyed-Hash Message Authentication Code): 含有密钥的散列函数算法
+在MD、SHA基础上添加了密钥；
+整合MD、SHA
+    - MD系列：HmacMD2、HmacMD4、HmacMD5
+    - SHA系列：HmacSHA1、HmacSHA224、HmacSHA256、HmacSHA384、HmacSHA512
