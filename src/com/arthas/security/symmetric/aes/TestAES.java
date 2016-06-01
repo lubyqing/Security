@@ -1,4 +1,4 @@
-package com.arthas.security.asymmetric.aes;
+package com.arthas.security.symmetric.aes;
 import java.security.Key;
 
 /**

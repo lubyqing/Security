@@ -1,4 +1,4 @@
-package com.arthas.security.asymmetric.des;
+package com.arthas.security.symmetric.des;
 
 import com.arthas.security.common.Constant;
 import org.apache.commons.codec.binary.Hex;

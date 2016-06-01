@@ -1,4 +1,4 @@
-package com.arthas.security.asymmetric.pbe;
+package com.arthas.security.symmetric.pbe;
 
 
 import com.arthas.security.common.Constant;

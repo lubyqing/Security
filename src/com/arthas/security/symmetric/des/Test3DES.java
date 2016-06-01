@@ -1,4 +1,4 @@
-package com.arthas.security.asymmetric.des;
+package com.arthas.security.symmetric.des;
 
 
 import java.security.Key;

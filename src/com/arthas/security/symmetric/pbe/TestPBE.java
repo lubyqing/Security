@@ -1,4 +1,4 @@
-package com.arthas.security.asymmetric.pbe;
+package com.arthas.security.symmetric.pbe;
 
 /**
  * Created by Arthas on 16/5/30.
